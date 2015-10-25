@@ -1,0 +1,329 @@
+
+<!doctype html>
+<html ng-app="testApp">
+<head>
+  <title>Test List</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="scss/style.css">
+</head>
+<body>
+
+  <div id="container">
+    <h2>Test Scores</h2>
+
+    <div class="test-box" ng-controller="TestListController as SATList">
+      <div class="test-header">SAT</div>
+      <div class="expander" onclick='expandParent(this)'>+</div>
+      <div class="test-detail-box" ng-repeat="SATItem in SATList.SATItems">
+        <div ng-click="SATList.deleteSATItem(SATItem)" class="delete-test">x</div>
+        <div class="line-1">
+          <div class="date-box">
+            <div class="box-header">
+              Test Date <span class="future">(If you haven't taken SAT, add upcoming date)</span>
+            </div>
+            <select>
+              <option>Month</option>
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+            <select>
+              <option>Year</option>
+              <option>2010</option>
+              <option>2011</option>
+              <option>2012</option>
+              <option>2013</option>
+              <option>2014</option>
+              <option>2015</option>
+              <option>2016</option>
+              <option>2017</option>
+              <option>2018</option>
+              <option>2019</option>
+              <option>2020</option>
+            </select>
+          </div>
+          <div class="score-box">
+            <div class="box-header">Test Score</div>
+            <div class="test-total-score" ng-model="SATList.SATtotalScore">
+              {{ SATreadingScore -- SATwritingScore -- SATmathsScore }}
+            </div>
+          </div>
+        </div>
+        <div class="line-2">
+          <div class="test-breakup-box">
+            <div class="breakup-item">
+              <div class="box-header">Reading</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="SATreadingScore">
+              </div>
+            </div>
+            <div class="breakup-item">
+              <div class="box-header">Writing</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="SATwritingScore">
+              </div>
+            </div>
+            <div class="breakup-item last">
+              <div class="box-header">Maths</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="SATmathsScore">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div ng-click="SATList.addSATItem()" class="add-test">Add Another SAT</div>
+    </div>
+
+    <div class="test-box" ng-controller="TestListController as SAT2List">
+      <div class="test-header">SAT II</div>
+      <div class="expander" onclick='expandParent(this)'>+</div>
+      <div class="test-detail-box" ng-repeat="SAT2Item in SAT2List.SAT2Items">
+        <div ng-click="SAT2List.deleteSAT2Item(SAT2Item)" class="delete-test">x</div>
+        <div class="line-1">
+          <div class="date-box">
+            <div class="box-header">
+              Test Date <span class="future">(If you haven't taken SAT II, add upcoming date)</span>
+            </div>
+            <select>
+              <option>Month</option>
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+            <select>
+              <option>Year</option>
+              <option>2010</option>
+              <option>2011</option>
+              <option>2012</option>
+              <option>2013</option>
+              <option>2014</option>
+              <option>2015</option>
+              <option>2016</option>
+              <option>2017</option>
+              <option>2018</option>
+              <option>2019</option>
+              <option>2020</option>
+            </select>
+          </div>
+          <div class="score-box">
+            <div class="box-header">Test Score</div>
+            <div class="test-total-score" ng-model="SAT2List.SAT2totalScore">
+              {{ SAT2physicsScore -- SAT2maths1Score -- SAT2maths2Score }}
+            </div>
+          </div>
+        </div>
+        <div class="line-2">
+          <div class="test-breakup-box">
+            <div class="breakup-item">
+              <div class="box-header">Physics</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="SAT2physicsScore">
+              </div>
+            </div>
+            <div class="breakup-item">
+              <div class="box-header">Math I</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="SAT2maths1Score">
+              </div>
+            </div>
+            <div class="breakup-item last">
+              <div class="box-header">Math II</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="SAT2maths2Score">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div ng-click="SAT2List.addSAT2Item()" class="add-test">Add Another SAT II</div>
+    </div>
+
+    <div class="test-box four-subject" ng-controller="TestListController as ACTList">
+      <div class="test-header">ACT</div>
+      <div class="expander" onclick='expandParent(this)'>+</div>
+      <div class="test-detail-box" ng-repeat="ACTItem in ACTList.ACTItems">
+        <div ng-click="ACTList.deleteACTItem(ACTItem)" class="delete-test">x</div>
+        <div class="line-1">
+          <div class="date-box">
+            <div class="box-header">
+              Test Date <span class="future">(If you haven't taken ACT, add upcoming date)</span>
+            </div>
+            <select>
+              <option>Month</option>
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+            <select>
+              <option>Year</option>
+              <option>2010</option>
+              <option>2011</option>
+              <option>2012</option>
+              <option>2013</option>
+              <option>2014</option>
+              <option>2015</option>
+              <option>2016</option>
+              <option>2017</option>
+              <option>2018</option>
+              <option>2019</option>
+              <option>2020</option>
+            </select>
+          </div>
+          <div class="score-box">
+            <div class="box-header">Test Score</div>
+            <div class="test-total-score" ng-model="ACTList.ACTtotalScore">
+              {{ ACTenglishScore -- ACTmathsScore -- ACTreadingScore -- ACTscienceScore }}
+            </div>
+          </div>
+        </div>
+        <div class="line-2">
+          <div class="test-breakup-box">
+            <div class="breakup-item">
+              <div class="box-header">English</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="ACTenglishScore">
+              </div>
+            </div>
+            <div class="breakup-item">
+              <div class="box-header">Math</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="ACTmathsScore">
+              </div>
+            </div>
+            <div class="breakup-item">
+              <div class="box-header">Reading</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="ACTreadingScore">
+              </div>
+            </div>
+            <div class="breakup-item last">
+              <div class="box-header">Science</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="ACTscienceScore">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div ng-click="ACTList.addACTItem()" class="add-test">Add Another ACT</div>
+    </div>
+
+    <div class="test-box four-subject last" ng-controller="TestListController as TOEFLList">
+      <div class="test-header">TOEFL</div>
+      <div class="expander" onclick='expandParent(this)'>+</div>
+      <div class="test-detail-box" ng-repeat="TOEFLItem in TOEFLList.TOEFLItems">
+        <div ng-click="TOEFLList.deleteTOEFLItem(TOEFLItem)" class="delete-test">x</div>
+        <div class="line-1">
+          <div class="date-box">
+            <div class="box-header">
+              Test Date <span class="future">(If you haven't taken TOEFL, add upcoming date)</span>
+            </div>
+            <select>
+              <option>Month</option>
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+            <select>
+              <option>Year</option>
+              <option>2010</option>
+              <option>2011</option>
+              <option>2012</option>
+              <option>2013</option>
+              <option>2014</option>
+              <option>2015</option>
+              <option>2016</option>
+              <option>2017</option>
+              <option>2018</option>
+              <option>2019</option>
+              <option>2020</option>
+            </select>
+          </div>
+          <div class="score-box">
+            <div class="box-header">Test Score</div>
+            <div class="test-total-score" ng-model="TOEFLList.TOEFLtotalScore">
+              {{ TOEFLreadingScore -- TOEFLlisteningScore -- TOEFLspeakingScore -- TOEFLwritingScore }}
+            </div>
+          </div>
+        </div>
+        <div class="line-2">
+          <div class="test-breakup-box">
+            <div class="breakup-item">
+              <div class="box-header">Reading</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="TOEFLreadingScore">
+              </div>
+            </div>
+            <div class="breakup-item">
+              <div class="box-header">Listening</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="TOEFLlisteningScore">
+              </div>
+            </div>
+            <div class="breakup-item">
+              <div class="box-header">Speaking</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="TOEFLspeakingScore">
+              </div>
+            </div>
+            <div class="breakup-item last">
+              <div class="box-header">Writing</div>
+              <div class="breakup-input">
+                <input type="text" ng-model="TOEFLwritingScore">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div ng-click="TOEFLList.addTOEFLItem()" class="add-test">Add Another TOEFL</div>
+    </div>
+
+  </div>
+
+  <script src="js/angular.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
